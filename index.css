@@ -32,9 +32,9 @@
     border: 1px solid grey;
     cursor: pointer;
 }
-.search{
-    padding: 10px;
-}
 .resto-logo{
     width: 100%;
+}
+.filter-btn{
+
 }

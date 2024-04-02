@@ -11,7 +11,7 @@
 
 .nav-items {
   padding: 0 20px;
-  font-size: 26px;
+  font-size: 22px;
 }
 
 .nav-items ul {
@@ -38,10 +38,6 @@
 .restaurant-card:hover {
   cursor: pointer;
   border: 1px solid gray;
-}
-
-.search {
-  padding: 10px;
 }
 
 .resto-logo {
