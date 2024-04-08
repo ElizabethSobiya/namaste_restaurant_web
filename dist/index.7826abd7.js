@@ -27514,34 +27514,34 @@ function Body() {
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
                         lineNumber: 10,
-                        columnNumber: 13
+                        columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/Body.js",
                     lineNumber: 9,
                     columnNumber: 9
                 }, this),
-                (0, _constants.restaurantList).map((restaurantData)=>{
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "resto-container",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
-                            resData: restaurantData.info
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "resto-container",
+                    children: (0, _constants.restaurantList).map((restaurantData)=>{
+                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
+                            resData: restaurantData
                         }, restaurantData.info.id, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 14,
-                            columnNumber: 12
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Body.js",
-                        lineNumber: 13,
-                        columnNumber: 12
-                    }, this);
-                })
+                            lineNumber: 15,
+                            columnNumber: 15
+                        }, this);
+                    })
+                }, void 0, false, {
+                    fileName: "src/components/Body.js",
+                    lineNumber: 12,
+                    columnNumber: 9
+                }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/Body.js",
             lineNumber: 8,
-            columnNumber: 5
+            columnNumber: 7
         }, this)
     }, void 0, false);
 }
@@ -27583,7 +27583,7 @@ function RestaurantCard({ resData }) {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                    children: name
+                    children: resData.info.name
                 }, void 0, false, {
                     fileName: "src/components/RestaurantCard.js",
                     lineNumber: 9,
