@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { API } from "./utils/Constants";
+import Shimmer from "./Shimmer";
 
 function Body() {
   const [ratingFilter, setRatingFilter] = useState([]);
@@ -42,7 +43,9 @@ function Body() {
     // console.log(restaurantList, 'rating');
     setRatingFilter(filteredData);
   };
-  return (
+  return ratingFilter.length === 0 ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="body">
         <div className="filter">

@@ -27366,7 +27366,14 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _restaurantLogoPng = require("../../assets/restaurant_logo.png");
 var _restaurantLogoPngDefault = parcelHelpers.interopDefault(_restaurantLogoPng);
+var _s = $RefreshSig$();
 function Header() {
+    _s();
+    const [buttonClick, setButtonClick] = (0, _react.useState)("Login");
+    const loginClick = ()=>{
+        setButtonClick("Logout");
+    // console.log(loginBtn, 'btn')
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "header",
         children: [
@@ -27380,12 +27387,12 @@ function Header() {
                     }
                 }, void 0, false, {
                     fileName: "src/components/Header.js",
-                    lineNumber: 8,
+                    lineNumber: 15,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/Header.js",
-                lineNumber: 7,
+                lineNumber: 14,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27396,48 +27403,58 @@ function Header() {
                             children: "Home"
                         }, void 0, false, {
                             fileName: "src/components/Header.js",
-                            lineNumber: 12,
+                            lineNumber: 19,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                             children: "About Us"
                         }, void 0, false, {
                             fileName: "src/components/Header.js",
-                            lineNumber: 13,
+                            lineNumber: 20,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                             children: "Contact Us"
                         }, void 0, false, {
                             fileName: "src/components/Header.js",
-                            lineNumber: 14,
+                            lineNumber: 21,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                             children: "Cart"
                         }, void 0, false, {
                             fileName: "src/components/Header.js",
-                            lineNumber: 15,
+                            lineNumber: 22,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: "login-btn",
+                            onClick: loginClick,
+                            children: buttonClick
+                        }, void 0, false, {
+                            fileName: "src/components/Header.js",
+                            lineNumber: 23,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Header.js",
-                    lineNumber: 11,
+                    lineNumber: 18,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/Header.js",
-                lineNumber: 10,
+                lineNumber: 17,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/Header.js",
-        lineNumber: 6,
+        lineNumber: 13,
         columnNumber: 5
     }, this);
 }
+_s(Header, "q5vYDNJl4ZPym6jIscinWlhnCFM=");
 _c = Header;
 exports.default = Header;
 var _c;
@@ -27501,6 +27518,8 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _restaurantCard = require("./RestaurantCard");
 var _restaurantCardDefault = parcelHelpers.interopDefault(_restaurantCard);
 var _constants = require("./utils/Constants");
+var _shimmer = require("./Shimmer");
+var _shimmerDefault = parcelHelpers.interopDefault(_shimmer);
 var _s = $RefreshSig$();
 function Body() {
     _s();
@@ -27528,7 +27547,11 @@ function Body() {
         // console.log(restaurantList, 'rating');
         setRatingFilter(filteredData);
     };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+    return ratingFilter.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
+        fileName: "src/components/Body.js",
+        lineNumber: 47,
+        columnNumber: 5
+    }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "body",
             children: [
@@ -27540,12 +27563,12 @@ function Body() {
                         children: "Top Rated Restaurant"
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 49,
+                        lineNumber: 52,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 48,
+                    lineNumber: 51,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27557,19 +27580,19 @@ function Body() {
                             resData: restaurantData
                         }, restaurantData?.id, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 58,
+                            lineNumber: 61,
                             columnNumber: 15
                         }, this));
                     })
                 }, void 0, false, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 53,
+                    lineNumber: 56,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/Body.js",
-            lineNumber: 47,
+            lineNumber: 50,
             columnNumber: 7
         }, this)
     }, void 0, false);
@@ -27585,7 +27608,7 @@ $RefreshReg$(_c, "Body");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./RestaurantCard":"bMboU","./utils/Constants":"iH0vC"}],"bMboU":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./RestaurantCard":"bMboU","./utils/Constants":"iH0vC","./Shimmer":"g6ZGj"}],"bMboU":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ffb1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27599,7 +27622,6 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _constants = require("./utils/Constants");
 function RestaurantCard({ resData }) {
-    console.log(resData?.cloudinaryImageId, "data111");
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "restaurant-card",
@@ -27608,15 +27630,15 @@ function RestaurantCard({ resData }) {
                     children: resData?.name
                 }, void 0, false, {
                     fileName: "src/components/RestaurantCard.js",
-                    lineNumber: 10,
-                    columnNumber: 8
+                    lineNumber: 9,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
                     children: resData?.locality
                 }, void 0, false, {
                     fileName: "src/components/RestaurantCard.js",
-                    lineNumber: 11,
-                    columnNumber: 8
+                    lineNumber: 10,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                     children: [
@@ -27625,8 +27647,8 @@ function RestaurantCard({ resData }) {
                     ]
                 }, void 0, true, {
                     fileName: "src/components/RestaurantCard.js",
-                    lineNumber: 12,
-                    columnNumber: 8
+                    lineNumber: 11,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                     children: [
@@ -27635,21 +27657,21 @@ function RestaurantCard({ resData }) {
                     ]
                 }, void 0, true, {
                     fileName: "src/components/RestaurantCard.js",
-                    lineNumber: 13,
-                    columnNumber: 8
+                    lineNumber: 12,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                     children: resData?.costForTwo
                 }, void 0, false, {
                     fileName: "src/components/RestaurantCard.js",
-                    lineNumber: 14,
-                    columnNumber: 8
+                    lineNumber: 13,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/RestaurantCard.js",
-            lineNumber: 8,
-            columnNumber: 5
+            lineNumber: 7,
+            columnNumber: 7
         }, this)
     }, void 0, false);
 }
@@ -27668,230 +27690,126 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CLOUD_IMG", ()=>CLOUD_IMG);
 parcelHelpers.export(exports, "API", ()=>API);
-parcelHelpers.export(exports, "restaurantList", ()=>restaurantList);
 const CLOUD_IMG = "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 const API = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-const restaurantList = [
-    {
-        "info": {
-            "id": "69527",
-            "name": "Pizza Hut",
-            "cloudinaryImageId": "2b4f62d606d1b2bfba9ba9e5386fabb7",
-            "locality": "Thirumalai Nagar",
-            "areaName": "Old Mahabalipuram Road OMR",
-            "costForTwo": "\u20B9400 for two",
-            "cuisines": [
-                "Pizzas"
-            ],
-            "avgRating": 4,
-            "parentId": "721",
-            "avgRatingString": "4.0",
-            "totalRatingsString": "10K+",
-            "sla": {
-                "deliveryTime": 47,
-                "lastMileTravel": 7.5,
-                "serviceability": "SERVICEABLE",
-                "slaString": "45-50 mins",
-                "lastMileTravelString": "7.5 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-04 00:00:00",
-                "opened": true
-            },
-            "badges": {
-                "imageBadges": [
-                    {
-                        "imageId": "Rxawards/_CATEGORY-Pizza.png",
-                        "description": "Delivery!"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "aggregatedDiscountInfoV2": {},
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "Delivery!",
-                                    "imageId": "Rxawards/_CATEGORY-Pizza.png"
-                                }
-                            }
-                        ]
-                    },
-                    "textBased": {},
-                    "textExtendedBadges": {}
-                }
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/pizza-hut-thirumalai-nagar-old-mahabalipuram-road-omr-chennai-69527",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "89583",
-            "name": "UBQ by Barbeque Nation",
-            "cloudinaryImageId": "xgj2cn4y2y8mtxisaplp",
-            "locality": "Thuraipakkam",
-            "areaName": "Thuraipakkam",
-            "costForTwo": "\u20B9300 for two",
-            "cuisines": [
-                "North Indian",
-                "Barbecue",
-                "Biryani",
-                "Kebabs",
-                "Mughlai",
-                "Desserts"
-            ],
-            "avgRating": 4,
-            "parentId": "10804",
-            "avgRatingString": "4.0",
-            "totalRatingsString": "1K+",
-            "sla": {
-                "deliveryTime": 49,
-                "lastMileTravel": 5.6,
-                "serviceability": "SERVICEABLE",
-                "slaString": "45-50 mins",
-                "lastMileTravelString": "5.6 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-03 16:30:00",
-                "opened": true
-            },
-            "badges": {},
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {},
-                    "textBased": {},
-                    "textExtendedBadges": {}
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "50% OFF",
-                "subHeader": "UPTO \u20B9100"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/ubq-by-barbeque-nation-thuraipakkam-chennai-89583",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "203407",
-            "name": "Wow! Momo",
-            "cloudinaryImageId": "64fd45fd9f44c1737bc446e470bed666",
-            "locality": "Thuraipakkam",
-            "areaName": "Thuraipakkam",
-            "costForTwo": "\u20B9300 for two",
-            "cuisines": [
-                "Tibetan",
-                "Healthy Food",
-                "Asian",
-                "Chinese",
-                "Snacks",
-                "Continental",
-                "Desserts",
-                "Beverages"
-            ],
-            "avgRating": 4.2,
-            "parentId": "1776",
-            "avgRatingString": "4.2",
-            "totalRatingsString": "5K+",
-            "sla": {
-                "deliveryTime": 43,
-                "lastMileTravel": 6.8,
-                "serviceability": "SERVICEABLE",
-                "slaString": "40-45 mins",
-                "lastMileTravelString": "6.8 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-03 23:00:00",
-                "opened": true
-            },
-            "badges": {
-                "imageBadges": [
-                    {
-                        "imageId": "Rxawards/_CATEGORY-Chinese.png",
-                        "description": "Delivery!"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "Delivery!",
-                                    "imageId": "Rxawards/_CATEGORY-Chinese.png"
-                                }
-                            }
-                        ]
-                    },
-                    "textBased": {},
-                    "textExtendedBadges": {}
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "60% OFF",
-                "subHeader": "UPTO \u20B9120"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/wow-momo-thuraipakkam-chennai-203407",
-            "type": "WEBLINK"
-        }
-    }
-];
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["APLPM","1xC6H","2Ew96"], "2Ew96", "parcelRequire88b7")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"g6ZGj":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$0b04 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$0b04.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+function Shimmer() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "shimmer-container",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 6,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 7,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 8,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 9,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 10,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 11,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 12,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 13,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 14,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 15,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 16,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "shimmer"
+            }, void 0, false, {
+                fileName: "src/components/Shimmer.js",
+                lineNumber: 17,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/Shimmer.js",
+        lineNumber: 5,
+        columnNumber: 5
+    }, this);
+}
+_c = Shimmer;
+exports.default = Shimmer;
+var _c;
+$RefreshReg$(_c, "Shimmer");
+
+  $parcel$ReactRefreshHelpers$0b04.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["APLPM","1xC6H","2Ew96"], "2Ew96", "parcelRequire88b7")
 
 //# sourceMappingURL=index.7826abd7.js.map

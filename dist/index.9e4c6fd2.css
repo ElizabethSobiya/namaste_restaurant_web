@@ -1,6 +1,7 @@
 .header {
   border-bottom: 1px solid #000;
   justify-content: space-between;
+  font-size: 20px;
   display: flex;
 }
 
@@ -31,16 +32,35 @@
 }
 
 .restaurant-card {
+  background-color: #f0f0f0;
   width: 200px;
-  padding: 5px;
+  margin: 20px;
+  padding: 10px;
 }
 
 .restaurant-card:hover {
   cursor: pointer;
-  border: 1px solid gray;
+  border: 1px solid #969393;
 }
 
 .resto-logo {
   width: 100%;
+}
+
+.shimmer-container {
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.shimmer {
+  background-color: #f0f0f0;
+  width: 200px;
+  height: 400px;
+  margin: 20px;
+}
+
+.login-btn {
+  cursor: pointer;
+  padding-inline: 10px;
 }
 /*# sourceMappingURL=index.9e4c6fd2.css.map */
