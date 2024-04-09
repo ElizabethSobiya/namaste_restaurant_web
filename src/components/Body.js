@@ -4,7 +4,8 @@ import { API } from "./utils/Constants";
 import Shimmer from "./Shimmer";
 
 function Body() {
-  const [ratingFilter, setRatingFilter] = useState([]);
+  const [restaurant, setRestaurants] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetchRestaurantData();
@@ -14,50 +15,69 @@ function Body() {
       const data = await fetch(API);
       const resData = await data.json();
 
-      // Check if resData exists and contains valid data
-      if (resData && resData.data && resData.data.cards) {
-        const checkData = resData.data.cards.flatMap((card) =>
-          card?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map(
-            (restaurant) => restaurant.info
-          )
-        );
-
-        // Check if checkData is not empty
-        if (checkData.length > 0) {
-          setRatingFilter(checkData);
-        } else {
-          setRatingFilter([]); // Set an empty array if checkData is empty
+      async function checkRestaurantData(resData){
+        for(let i=0; i < resData.data.cards.length; i++){
+          const checkData = resData.data.cards[i].card?.card?.card?.card?.gridElements?.infoWithStyle?.restaurants
+          if (checkData !== undefined) {
+            return checkData;
+          }
         }
-      } else {
-        setRatingFilter([]); // Set an empty array if resData is undefined or does not contain valid data
       }
+      const resultData = checkRestaurantData(resData);
+
+      // if (resData && resData.data && resData.data.cards) {
+      //   const checkData = resData.data.cards.flatMap((card) =>
+      //     card?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map(
+      //       (restaurant) => restaurant.info
+      //     )
+      //   );
+
+        if (resultData.length > 0) {
+          setRestaurants(resultData);
+        } else {
+          setRestaurants([]);
+        }
+      
     } catch (error) {
       console.error("Error fetching restaurant data:", error);
     }
   };
 
   const handleFilterClick = () => {
-    const filteredData = restaurantList.filter(
-      (res) => res.info && res.info.avgRating > 4
-    );
-    // console.log(restaurantList, 'rating');
-    setRatingFilter(filteredData);
+    const filteredData = restaurant.filter((res) => res?.avgRating > 4);
+    setRestaurants(filteredData);
   };
-  return ratingFilter.length === 0 ? (
+  const filteredRestaurant = () => {
+    console.log(restaurant?.id, 'name');
+    const searchFilter = restaurant.filter((resSearch)=> resSearch?.name.toLowerCase().includes(search))
+    console.log(searchFilter, "search");
+    setRestaurants(searchFilter);
+  };
+  return restaurant.length === 0 ? (
     <Shimmer />
   ) : (
     <>
       <div className="body">
         <div className="filter">
+          <div className="search">
+            <input
+              type="text"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+              className="search"
+              value={search}
+            />
+            <button onClick={filteredRestaurant}>Search</button>
+          </div>
           <button className="filter-btn" onClick={handleFilterClick}>
             Top Rated Restaurant
           </button>
         </div>
         <div className="resto-container">
-          {ratingFilter.map((restaurantData) => {
+          {restaurant.map((restaurantData) => {
             // console.log(restaurantData, 'resdarttttaa')
             return (
-              // Add return statement here
               <RestaurantCard
                 resData={restaurantData}
                 key={restaurantData?.id}

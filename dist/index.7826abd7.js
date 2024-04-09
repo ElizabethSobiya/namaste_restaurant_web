@@ -27371,7 +27371,7 @@ function Header() {
     _s();
     const [buttonClick, setButtonClick] = (0, _react.useState)("Login");
     const loginClick = ()=>{
-        setButtonClick("Logout");
+        buttonClick === "Login" ? setButtonClick("Logout") : setButtonClick("Login");
     // console.log(loginBtn, 'btn')
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27523,7 +27523,8 @@ var _shimmerDefault = parcelHelpers.interopDefault(_shimmer);
 var _s = $RefreshSig$();
 function Body() {
     _s();
-    const [ratingFilter, setRatingFilter] = (0, _react.useState)([]);
+    const [restaurant, setRestaurants] = (0, _react.useState)([]);
+    const [search, setSearch] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
         fetchRestaurantData();
     }, []);
@@ -27531,25 +27532,38 @@ function Body() {
         try {
             const data = await fetch((0, _constants.API));
             const resData = await data.json();
-            // Check if resData exists and contains valid data
-            if (resData && resData.data && resData.data.cards) {
-                const checkData = resData.data.cards.flatMap((card)=>card?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map((restaurant)=>restaurant.info));
-                // Check if checkData is not empty
-                if (checkData.length > 0) setRatingFilter(checkData);
-                else setRatingFilter([]); // Set an empty array if checkData is empty
-            } else setRatingFilter([]); // Set an empty array if resData is undefined or does not contain valid data
+            async function checkRestaurantData(resData) {
+                for(let i = 0; i < resData.data.cards.length; i++){
+                    const checkData = resData.data.cards[i].card?.card?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+                    if (checkData !== undefined) return checkData;
+                }
+            }
+            const resultData = checkRestaurantData(resData);
+            // if (resData && resData.data && resData.data.cards) {
+            //   const checkData = resData.data.cards.flatMap((card) =>
+            //     card?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map(
+            //       (restaurant) => restaurant.info
+            //     )
+            //   );
+            if (resultData.length > 0) setRestaurants(resultData);
+            else setRestaurants([]);
         } catch (error) {
             console.error("Error fetching restaurant data:", error);
         }
     };
     const handleFilterClick = ()=>{
-        const filteredData = restaurantList.filter((res)=>res.info && res.info.avgRating > 4);
-        // console.log(restaurantList, 'rating');
-        setRatingFilter(filteredData);
+        const filteredData = restaurant.filter((res)=>res?.avgRating > 4);
+        setRestaurants(filteredData);
     };
-    return ratingFilter.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
+    const filteredRestaurant = ()=>{
+        console.log(restaurant?.id, "name");
+        const searchFilter = restaurant.filter((resSearch)=>resSearch?.name.toLowerCase().includes(search));
+        console.log(searchFilter, "search");
+        setRestaurants(searchFilter);
+    };
+    return restaurant.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 47,
+        lineNumber: 57,
         columnNumber: 5
     }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27557,47 +27571,77 @@ function Body() {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "filter",
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        className: "filter-btn",
-                        onClick: handleFilterClick,
-                        children: "Top Rated Restaurant"
-                    }, void 0, false, {
-                        fileName: "src/components/Body.js",
-                        lineNumber: 52,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "search",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                    type: "text",
+                                    onChange: (e)=>{
+                                        setSearch(e.target.value);
+                                    },
+                                    className: "search",
+                                    value: search
+                                }, void 0, false, {
+                                    fileName: "src/components/Body.js",
+                                    lineNumber: 63,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                    onClick: filteredRestaurant,
+                                    children: "Search"
+                                }, void 0, false, {
+                                    fileName: "src/components/Body.js",
+                                    lineNumber: 71,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/Body.js",
+                            lineNumber: 62,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: "filter-btn",
+                            onClick: handleFilterClick,
+                            children: "Top Rated Restaurant"
+                        }, void 0, false, {
+                            fileName: "src/components/Body.js",
+                            lineNumber: 73,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 51,
+                    lineNumber: 61,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "resto-container",
-                    children: ratingFilter.map((restaurantData)=>{
+                    children: restaurant.map((restaurantData)=>{
                         // console.log(restaurantData, 'resdarttttaa')
-                        return(// Add return statement here
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
+                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
                             resData: restaurantData
                         }, restaurantData?.id, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 61,
+                            lineNumber: 81,
                             columnNumber: 15
-                        }, this));
+                        }, this);
                     })
                 }, void 0, false, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 56,
+                    lineNumber: 77,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/Body.js",
-            lineNumber: 50,
+            lineNumber: 60,
             columnNumber: 7
         }, this)
     }, void 0, false);
 }
-_s(Body, "O4qYM7eASDwTsCdkT0GF0QkLkSw=");
+_s(Body, "6dVPOKryadOjUiUuuSUWsfL4Qzw=");
 _c = Body;
 exports.default = Body;
 var _c;

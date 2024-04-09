@@ -47,6 +47,12 @@
   width: 100%;
 }
 
+.filter {
+  justify-content: space-between;
+  margin: 20px;
+  display: flex;
+}
+
 .shimmer-container {
   flex-wrap: wrap;
   display: flex;

@@ -6,7 +6,7 @@ function Header() {
   const [buttonClick, setButtonClick] = useState('Login');
 
   const loginClick =()=>{
-    setButtonClick('Logout')
+    buttonClick === 'Login' ? setButtonClick('Logout') : setButtonClick('Login') 
     // console.log(loginBtn, 'btn')
   }
   return (
