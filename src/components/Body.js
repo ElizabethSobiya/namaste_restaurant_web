@@ -15,45 +15,41 @@ function Body() {
       const data = await fetch(API);
       const resData = await data.json();
 
-      async function checkRestaurantData(resData){
-        for(let i=0; i < resData.data.cards.length; i++){
-          const checkData = resData.data.cards[i].card?.card?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      async function checkRestaurantData(resData) {
+        for (let i = 0; i < resData.data.cards.length; i++) {
+          const checkData =
+            resData.data.cards[i].card?.card?.gridElements?.infoWithStyle
+              ?.restaurants;
           if (checkData !== undefined) {
             return checkData;
           }
         }
       }
-      const resultData = checkRestaurantData(resData);
-
-      // if (resData && resData.data && resData.data.cards) {
-      //   const checkData = resData.data.cards.flatMap((card) =>
-      //     card?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map(
-      //       (restaurant) => restaurant.info
-      //     )
-      //   );
-
-        if (resultData.length > 0) {
-          setRestaurants(resultData);
-        } else {
-          setRestaurants([]);
-        }
-      
+      const resultData = await checkRestaurantData(resData);
+      setRestaurants(resultData);
+      setSearch("");
     } catch (error) {
       console.error("Error fetching restaurant data:", error);
     }
   };
 
   const handleFilterClick = () => {
-    const filteredData = restaurant.filter((res) => res?.avgRating > 4);
+    const filteredData = restaurant.filter((res) => res?.info?.avgRating > 4);
     setRestaurants(filteredData);
   };
   const filteredRestaurant = () => {
-    console.log(restaurant?.id, 'name');
-    const searchFilter = restaurant.filter((resSearch)=> resSearch?.name.toLowerCase().includes(search))
+    if (search === "") {
+      fetchRestaurantData();
+      return;
+    }
+    const searchFilter = restaurant.filter((resSearch) =>
+      resSearch.info.name.toLowerCase().includes(search.toLowerCase())
+    );
     console.log(searchFilter, "search");
     setRestaurants(searchFilter);
   };
-  return restaurant.length === 0 ? (
+  
+  return restaurant?.info?.length === 0 ? (
     <Shimmer />
   ) : (
     <>
@@ -75,13 +71,9 @@ function Body() {
           </button>
         </div>
         <div className="resto-container">
-          {restaurant.map((restaurantData) => {
-            // console.log(restaurantData, 'resdarttttaa')
+        {restaurant.map((restaurants) => {
             return (
-              <RestaurantCard
-                resData={restaurantData}
-                key={restaurantData?.id}
-              />
+              <RestaurantCard key={restaurants?.info?.id} {...restaurants?.info} />
             );
           })}
         </div>
