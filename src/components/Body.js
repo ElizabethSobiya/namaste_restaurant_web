@@ -6,6 +6,7 @@ import Shimmer from "./Shimmer";
 function Body() {
   const [restaurant, setRestaurants] = useState([]);
   const [search, setSearch] = useState("");
+  const [filteredRes, setFilteredRes] = useState([]);
 
   useEffect(() => {
     fetchRestaurantData();
@@ -27,6 +28,7 @@ function Body() {
       }
       const resultData = await checkRestaurantData(resData);
       setRestaurants(resultData);
+      setFilteredRes(resultData);
       setSearch("");
     } catch (error) {
       console.error("Error fetching restaurant data:", error);
@@ -46,9 +48,10 @@ function Body() {
       resSearch.info.name.toLowerCase().includes(search.toLowerCase())
     );
     console.log(searchFilter, "search");
-    setRestaurants(searchFilter);
+    // setRestaurants(searchFilter);
+    setFilteredRes(searchFilter)
   };
-  
+
   return restaurant?.info?.length === 0 ? (
     <Shimmer />
   ) : (
@@ -71,9 +74,12 @@ function Body() {
           </button>
         </div>
         <div className="resto-container">
-        {restaurant.map((restaurants) => {
+          {filteredRes.map((restaurants) => {
             return (
-              <RestaurantCard key={restaurants?.info?.id} {...restaurants?.info} />
+              <RestaurantCard
+                key={restaurants?.info?.id}
+                {...restaurants?.info}
+              />
             );
           })}
         </div>
