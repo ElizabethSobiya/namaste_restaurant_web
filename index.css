@@ -3,6 +3,8 @@
   justify-content: space-between;
   border-bottom: 1px solid black;
   font-size: 20px;
+  text-decoration: none;
+
 }
 .logo {
   width: "10px";
@@ -19,6 +21,7 @@
 .nav-items ul li {
   padding: 8px;
   margin: 10px;
+  text-decoration: none;
 }
 .resto-container {
   display: flex;
@@ -58,4 +61,10 @@
 .login-btn{
     padding-inline: 10px;
     cursor: pointer;
+}
+.error{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
