@@ -21,6 +21,11 @@
   display: flex;
 }
 
+a {
+  color: #000;
+  text-decoration: none;
+}
+
 .nav-items ul li {
   margin: 10px;
   padding: 8px;
@@ -76,6 +81,5 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  display: flex;
 }
 /*# sourceMappingURL=index.9e4c6fd2.css.map */

@@ -18,6 +18,10 @@
   display: flex;
   list-style-type: none;
 }
+a{
+  text-decoration: none;
+  color: black;
+}
 .nav-items ul li {
   padding: 8px;
   margin: 10px;
@@ -63,7 +67,6 @@
     cursor: pointer;
 }
 .error{
-  display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;

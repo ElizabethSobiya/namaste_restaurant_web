@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { API } from "./utils/Constants";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 function Body() {
   const [restaurant, setRestaurants] = useState([]);
@@ -49,7 +50,7 @@ function Body() {
     );
     console.log(searchFilter, "search");
     // setRestaurants(searchFilter);
-    setFilteredRes(searchFilter)
+    setFilteredRes(searchFilter);
   };
 
   return restaurant?.info?.length === 0 ? (
@@ -76,10 +77,12 @@ function Body() {
         <div className="resto-container">
           {filteredRes.map((restaurants) => {
             return (
-              <RestaurantCard
+              <Link
                 key={restaurants?.info?.id}
-                {...restaurants?.info}
-              />
+                to={"/restaurant/" + restaurants?.info?.id}
+              >
+                <RestaurantCard {...restaurants?.info} />
+              </Link>
             );
           })}
         </div>
