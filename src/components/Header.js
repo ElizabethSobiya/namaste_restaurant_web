@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Logo from "../../assets/restaurant_logo.png";
 import { Link } from "react-router-dom";
+import useOnlineSatus from "./hooks/useOnlineStatus";
 
 function Header() {
   const [buttonClick, setButtonClick] = useState("Login");
+  const onlineStaus = useOnlineSatus()
 
   const loginClick = () => {
     buttonClick === "Login"
@@ -20,6 +22,9 @@ function Header() {
       </div>
       <div className="nav-items">
         <ul>
+          <li>
+            Online Status {onlineStaus ? "✅" : "🔴"}
+          </li>
           <li>
             {" "}
             <Link to="/">Home</Link>{" "}
