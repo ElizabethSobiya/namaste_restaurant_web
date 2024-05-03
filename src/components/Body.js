@@ -64,23 +64,27 @@ function Body() {
   ) : (
     <>
       <div className="body">
-        <div className="filter">
-          <div className="search">
+        <div className="filter flex">
+          <div className="search m-4 p-4 ">
             <input
               type="text"
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
-              className="search"
+              className="border border-solid border-black"
               value={search}
             />
-            <button onClick={filteredRestaurant}>Search</button>
+            <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" onClick={filteredRestaurant}>Search</button>
+
           </div>
-          <button className="filter-btn" onClick={handleFilterClick}>
+          <div className="search m-4 p-4 flex items-center rounded-lg">
+          <button className="filter-btn flex px-4 py-2 bg-gray-50" onClick={handleFilterClick}>
             Top Rated Restaurant
           </button>
+          </div>
+          
         </div>
-        <div className="resto-container">
+        <div className="flex flex-wrap pl-2 ">
           {filteredRes.map((restaurants) => {
             return (
               <Link

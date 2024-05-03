@@ -27,18 +27,17 @@ const RestaurantMenu = () => {
   if(restaurantData === null){
     return <Shimmer/>
   }
-  const {name, cuisines} = restaurantData?.data?.cards[2]?.card?.card?.info;
+  const {name, cuisines, costForTwoMessage} = restaurantData?.data?.cards[2]?.card?.card?.info;
   console.log(restaurantData?.data?.cards[2]?.card?.card?.info, 'jjj')
   return  (
     <>
-      <div className="menu">
-        <h1>{name}</h1>
-        <h2>{cuisines.join(', ')}</h2>
+      <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <p className="font-bold text-lg">
+        {cuisines.join(", ")} - {costForTwoMessage}
+      </p>
       </div>
-      <div>
-        <p>Briyani</p>
-        <p>Burger</p>
-      </div>
+      
     </>
   );
 };
