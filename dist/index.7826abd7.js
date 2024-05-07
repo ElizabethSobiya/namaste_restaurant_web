@@ -34245,6 +34245,7 @@ function Body() {
     const [restaurant, setRestaurants] = (0, _react.useState)([]);
     const [search, setSearch] = (0, _react.useState)("");
     const [filteredRes, setFilteredRes] = (0, _react.useState)([]);
+    const PromotedResCard = (0, _restaurantCard.promotedRestaurant)((0, _restaurantCardDefault.default));
     (0, _react.useEffect)(()=>{
         fetchRestaurantData();
     }, []);
@@ -34285,12 +34286,12 @@ function Body() {
         children: "Looks like your are offline, connect your internet"
     }, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 59,
+        lineNumber: 61,
         columnNumber: 12
     }, this);
     return restaurant?.info?.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 63,
+        lineNumber: 65,
         columnNumber: 5
     }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34311,7 +34312,7 @@ function Body() {
                                     value: search
                                 }, void 0, false, {
                                     fileName: "src/components/Body.js",
-                                    lineNumber: 69,
+                                    lineNumber: 71,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -34320,13 +34321,13 @@ function Body() {
                                     children: "Search"
                                 }, void 0, false, {
                                     fileName: "src/components/Body.js",
-                                    lineNumber: 77,
+                                    lineNumber: 79,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 68,
+                            lineNumber: 70,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34337,18 +34338,18 @@ function Body() {
                                 children: "Top Rated Restaurant"
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 81,
+                                lineNumber: 83,
                                 columnNumber: 11
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 80,
+                            lineNumber: 82,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 67,
+                    lineNumber: 69,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34356,28 +34357,34 @@ function Body() {
                     children: filteredRes.map((restaurants)=>{
                         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             to: "/restaurant/" + restaurants?.info?.id,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
+                            children: restaurants?.info?.promoted ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(PromotedResCard, {
                                 ...restaurants?.info
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 94,
-                                columnNumber: 17
+                                lineNumber: 96,
+                                columnNumber: 48
+                            }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
+                                ...restaurants?.info
+                            }, void 0, false, {
+                                fileName: "src/components/Body.js",
+                                lineNumber: 96,
+                                columnNumber: 91
                             }, this)
                         }, restaurants?.info?.id, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 90,
+                            lineNumber: 92,
                             columnNumber: 15
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 87,
+                    lineNumber: 89,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/Body.js",
-            lineNumber: 66,
+            lineNumber: 68,
             columnNumber: 7
         }, this)
     }, void 0, false);
@@ -34406,6 +34413,7 @@ $parcel$ReactRefreshHelpers$ffb1.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "promotedRestaurant", ()=>promotedRestaurant);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
@@ -34416,14 +34424,6 @@ function RestaurantCard({ cloudinaryImageId, name, cuisines, areaName, sla, cost
             "data-testid": "resCard",
             className: "m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200",
             children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                    className: "rounded-lg h-auto",
-                    src: (0, _constants.CLOUD_IMG) + cloudinaryImageId
-                }, void 0, false, {
-                    fileName: "src/components/RestaurantCard.js",
-                    lineNumber: 19,
-                    columnNumber: 9
-                }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                     className: "font-bold py-4 text-lg",
                     children: name
@@ -34479,6 +34479,29 @@ function RestaurantCard({ cloudinaryImageId, name, cuisines, areaName, sla, cost
     }, void 0, false);
 }
 _c = RestaurantCard;
+const promotedRestaurant = (RestaurantCard)=>{
+    return (props)=>{
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                    htmlFor: "",
+                    children: "Promoted"
+                }, void 0, false, {
+                    fileName: "src/components/RestaurantCard.js",
+                    lineNumber: 37,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(RestaurantCard, {
+                    ...props
+                }, void 0, false, {
+                    fileName: "src/components/RestaurantCard.js",
+                    lineNumber: 38,
+                    columnNumber: 7
+                }, undefined)
+            ]
+        }, void 0, true);
+    };
+};
 exports.default = RestaurantCard;
 var _c;
 $RefreshReg$(_c, "RestaurantCard");

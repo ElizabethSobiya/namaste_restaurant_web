@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {promotedRestaurant} from "./RestaurantCard";
 import { API } from "./utils/Constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -9,6 +9,8 @@ function Body() {
   const [restaurant, setRestaurants] = useState([]);
   const [search, setSearch] = useState("");
   const [filteredRes, setFilteredRes] = useState([]);
+
+  const PromotedResCard = promotedRestaurant(RestaurantCard)
 
   useEffect(() => {
     fetchRestaurantData();
@@ -91,7 +93,8 @@ function Body() {
                 key={restaurants?.info?.id}
                 to={"/restaurant/" + restaurants?.info?.id}
               >
-                <RestaurantCard {...restaurants?.info} />
+                {restaurants?.info?.promoted ? <PromotedResCard {...restaurants?.info} />:<RestaurantCard {...restaurants?.info} /> }
+                
               </Link>
             );
           })}
