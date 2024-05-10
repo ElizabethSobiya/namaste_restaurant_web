@@ -20,7 +20,7 @@ function Body() {
     try {
       const data = await fetch(API);
       const resData = await data.json();
-
+      console.log(resData, 'data')
       async function checkRestaurantData(resData) {
         for (let i = 0; i < resData.data.cards.length; i++) {
           const checkData =
@@ -32,6 +32,7 @@ function Body() {
         }
       }
       const resultData = await checkRestaurantData(resData);
+      // console.log(resultData, 'res')
       setRestaurants(resultData);
       setFilteredRes(resultData);
       setSearch("");
@@ -93,7 +94,7 @@ function Body() {
                 key={restaurants?.info?.id}
                 to={"/restaurant/" + restaurants?.info?.id}
               >
-                {restaurants?.info?.promoted ? <PromotedResCard {...restaurants?.info} />:<RestaurantCard {...restaurants?.info} /> }
+                {restaurants?.info?.hasBestsellerItems ? <PromotedResCard {...restaurants?.info} />:<RestaurantCard {...restaurants?.info} /> }
                 
               </Link>
             );
