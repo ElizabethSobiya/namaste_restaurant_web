@@ -1,7 +1,15 @@
+import { useDispatch } from "react-redux";
 import { CLOUD_IMG } from "./utils/Constants";
+import { addItems } from "./utils/createSlice";
 
 const ItemList = ({ item }) => {
-  console.log(item, "items");
+  // console.log(item, "items");
+  const dispatch = useDispatch();
+
+  const handleAddItem = (items) => {
+    dispatch(addItems(items));
+    console.log(items);
+  };
   return (
     <>
       <div>
@@ -23,14 +31,17 @@ const ItemList = ({ item }) => {
             </div>
             <div className="w-3/12 p-4">
               {/* <div className=""> */}
-                <img
-                  className="w-full rounded-sm"
-                  src={CLOUD_IMG + items?.card?.info?.imageId}
-                  alt=""
-                />
+              <img
+                className="w-full rounded-sm"
+                src={CLOUD_IMG + items?.card?.info?.imageId}
+                alt=""
+              />
               {/* </div> */}
               <div className="absoulte ">
-                <button className="p-1 shadow-lg bg-green-700 text-white  text-xs rounded-sm">
+                <button
+                  className="p-1 shadow-lg bg-green-700 text-white  text-xs rounded-sm"
+                  onClick={() => handleAddItem(items)}
+                >
                   Add +
                 </button>
               </div>

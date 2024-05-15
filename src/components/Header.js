@@ -3,6 +3,7 @@ import Logo from "../../assets/restaurant_logo.png";
 import { Link } from "react-router-dom";
 import useOnlineSatus from "./hooks/useOnlineStatus";
 import userContext from "./hooks/useContext";
+import { useSelector } from "react-redux";
 
 function Header() {
   const [buttonClick, setButtonClick] = useState("Login");
@@ -16,6 +17,7 @@ function Header() {
       : setButtonClick("Login");
     // console.log(loginBtn, 'btn')
   };
+  const cartItems = useSelector((store)=>(store.cart.items))
   return (
     <div className="flex justify-between h-25 bg-pink-100 shadow-lg sm:bg-yellow-50 lg:bg-green-50">
       <div className="logo-container">
@@ -40,7 +42,7 @@ function Header() {
           </li>
           <li className="px-4">
             {" "}
-            <Link to="/cart">Cart</Link>{" "}
+            <Link to="/cart">Cart:{cartItems.length}</Link>{" "}
           </li>
           <button className="login-btn" onClick={loginClick}>
             {buttonClick}
