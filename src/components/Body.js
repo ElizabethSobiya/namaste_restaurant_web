@@ -5,6 +5,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineSatus from "./hooks/useOnlineStatus";
 import userContext from "./hooks/useContext";
+import { CiSearch } from "react-icons/ci";
 
 function Body() {
   const [restaurant, setRestaurants] = useState([]);
@@ -46,7 +47,6 @@ function Body() {
 
   const handleFilterClick = () => {
     const filteredData = restaurant.filter((res) => res?.info?.avgRating > 4);
-    console.log("clicked");
     console.log(filteredData, "resfilter");
     setRestaurants(filteredData);
   };
@@ -71,59 +71,45 @@ function Body() {
     <Shimmer />
   ) : (
     <>
-      <div className="body">
-        <div className="filter flex">
-          <div className="search m-4 p-4 ">
+      <div className="body bg-white dark:bg-gray-900 min-h-screen transition-colors duration-300">
+        <div className="filter flex flex-wrap items-center justify-center mb-4 pt-5 gap-4">
+          <div className="relative items-center">
             <input
               type="text"
-              onChange={(e) => {
-                setSearch(e.target.value);
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") filteredRestaurant();
               }}
-              className="border border-solid border-black"
+              className="pl-10 pr-4 py-2 w-130 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               value={search}
+              placeholder="Search restaurants..."
             />
-            <button
-              className="px-4 py-2 bg-green-100 m-4 rounded-lg"
-              onClick={filteredRestaurant}
-            >
-              Search
-            </button>
+            <CiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-white" />
           </div>
-          <div className="search m-4 p-4 flex items-center rounded-lg">
+
+          <div className="flex items-center">
             <button
-              className="filter-btn flex px-4 py-2 bg-gray-50"
+              className="px-4 py-2 bg-yellow-400 dark:bg-yellow-600 text-black dark:text-white rounded-full shadow-md hover:shadow-lg transition"
               onClick={handleFilterClick}
             >
-              Top Rated Restaurant
+              🌟 Top Rated
             </button>
           </div>
-          <div className="search m-4 p-4 flex items-center rounded-lg">
-            <label className="px-4" htmlFor="">
-              UserName :
-            </label>
-            <input
-              value={loggedInUser}
-              className="border border-black"
-              type="text"
-              onChange={(e) => setUserName(e.target.value)}
-            />
-          </div>
         </div>
-        <div className="flex flex-wrap pl-2 ">
-          {filteredRes.map((restaurants) => {
-            return (
-              <Link
-                key={restaurants?.info?.id}
-                to={"/restaurant/" + restaurants?.info?.id}
-              >
-                {restaurants?.info?.hasBestsellerItems ? (
-                  <PromotedResCard {...restaurants?.info} />
-                ) : (
-                  <RestaurantCard {...restaurants?.info} />
-                )}
-              </Link>
-            );
-          })}
+
+        <div className="flex flex-wrap pl-2 text-black dark:text-white">
+          {filteredRes.map((restaurants) => (
+            <Link
+              key={restaurants?.info?.id}
+              to={"/restaurant/" + restaurants?.info?.id}
+            >
+              {restaurants?.info?.hasBestsellerItems ? (
+                <PromotedResCard {...restaurants?.info} />
+              ) : (
+                <RestaurantCard {...restaurants?.info} />
+              )}
+            </Link>
+          ))}
         </div>
       </div>
     </>

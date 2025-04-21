@@ -8,11 +8,11 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
   const [itemIndex, setItemIndex] = useState(0);
-  // console.log(resId, "id");
-  console.log(resInfo, "jjj");
+
   if (resInfo === null) {
     return <Shimmer />;
   }
+
   const { name, cuisines, costForTwoMessage } =
     resInfo?.cards[2]?.card?.card?.info;
 
@@ -24,25 +24,23 @@ const RestaurantMenu = () => {
         c.card?.["card"]?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
-    console.log(categories, 'catt')
 
   return (
-    <>
-      <div className="text-center">
-        <h1 className="font-bold my-6 text-2xl">{name}</h1>
-        <p className="font-bold text-lg">
-          {cuisines.join(", ")} - {costForTwoMessage}
-        </p>
-        {categories.map((category, index) => (
-          <RestaurantCategory
-            data={category?.card?.card}
-            key={category?.card?.card?.title}
-            itemList={index === itemIndex ? true : false}
-            setItemIndex={()=> setItemIndex(index)}
-          />
-        ))}
-      </div>
-    </>
+    <div className="text-center px-4 dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-300">
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <p className="font-bold text-lg mb-4">
+        {cuisines.join(", ")} - {costForTwoMessage}
+      </p>
+
+      {categories.map((category, index) => (
+        <RestaurantCategory
+          data={category?.card?.card}
+          key={category?.card?.card?.title}
+          itemList={index === itemIndex}
+          setItemIndex={() => setItemIndex(index)}
+        />
+      ))}
+    </div>
   );
 };
 

@@ -11,40 +11,34 @@ function RestaurantCard({
   avgRatingString,
 }) {
   return (
-    <>
-      <div
-        data-testid="resCard"
-        className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200"
-      >
-        <img
-          className="rounded-lg h-auto"
-          src={CLOUD_IMG + cloudinaryImageId}
-        />
-        <h3 className="font-bold py-4 text-lg">{name}</h3>
-        <h5>{cuisines.join(", ")}</h5>
-        <h5>{areaName}</h5>
-        <p>{avgRatingString}/5</p>
-        <h4>{sla?.lastMileTravelString ?? "2.0 km"}</h4>
-        <h4>{costForTwo ?? "₹200 for two"}</h4>
-      </div>
-    </>
+    <div
+      data-testid="resCard"
+      className="m-4 p-4 w-[250px] rounded-lg bg-white shadow-md hover:bg-yellow-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-black dark:text-white transition-colors duration-300"
+    >
+      <img
+        className="rounded-lg h-40 w-full object-cover"
+        src={CLOUD_IMG + cloudinaryImageId}
+        alt={name}
+      />
+      <h3 className="font-bold py-2 text-lg truncate">{name}</h3>
+      <h5 className="truncate">{cuisines.join(", ")}</h5>
+      <h5>{areaName}</h5>
+      <p>{avgRatingString}/5</p>
+      <h4>{sla?.lastMileTravelString ?? "2.0 km"}</h4>
+      <h4>{costForTwo ?? "₹200 for two"}</h4>
+    </div>
   );
 }
-
-//// hoc for restaurant card with promoted label
 
 export const promotedRestaurant = (RestaurantCard) => {
   return (props) => {
     return (
-      <>
-        <label
-          className="absoulte bg-black text-white p-2 m-2 rounded-lg"
-          htmlFor=""
-        >
+      <div className="relative">
+        <span className="absolute top-2 left-2 bg-black text-white text-xs px-2 py-1 rounded-md z-10">
           Promoted
-        </label>
+        </span>
         <RestaurantCard {...props} />
-      </>
+      </div>
     );
   };
 };
