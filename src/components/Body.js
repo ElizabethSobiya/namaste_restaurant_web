@@ -15,6 +15,7 @@ function Body() {
   const PromotedResCard = promotedRestaurant(RestaurantCard);
 
   const { setUserName, loggedInUser } = useContext(userContext);
+  const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
     fetchRestaurantData();
@@ -46,8 +47,16 @@ function Body() {
   };
 
   const handleFilterClick = () => {
-    const filteredData = restaurant.filter((res) => res?.info?.avgRating > 4.5);
-    setFilteredRes(filteredData);
+    if (!isFiltered) {
+      const filteredData = restaurant.filter(
+        (res) => res?.info?.avgRating > 4.5
+      );
+      setFilteredRes(filteredData);
+      setIsFiltered(true);
+    } else {
+      setFilteredRes(restaurant); // reset list
+      setIsFiltered(false);
+    }
   };
 
   const handleSearch = () => {
@@ -81,7 +90,7 @@ function Body() {
               onChange={(e) => {
                 setSearch(e.target.value);
                 if (e.target.value === "") {
-                  setFilteredRes(restaurant); 
+                  setFilteredRes(restaurant);
                 }
               }}
               onKeyDown={(e) => {
@@ -94,12 +103,20 @@ function Body() {
           </div>
 
           <div className="flex items-center">
-          <button
-              className="px-4 py-2 bg-yellow-400 dark:bg-yellow-600 text-black dark:text-white rounded-full shadow-md hover:shadow-lg transition"
-            onClick={handleFilterClick}
-          >
-            🌟 Top Rated
-          </button>
+            <button
+              className={`flex items-center gap-2 px-5 py-2 rounded-full shadow-md hover:shadow-lg transition 
+    ${
+      isFiltered
+        ? "bg-[#F0F0F5] text-black"
+        : "bg-yellow-400 dark:bg-yellow-600 text-black dark:text-white"
+    }`}
+              onClick={handleFilterClick}
+            >
+              {isFiltered && (
+                <span className="text-black text-sm font-bold">&times;</span>
+              )}
+              🌟 Top Rated
+            </button>
           </div>
         </div>
 
