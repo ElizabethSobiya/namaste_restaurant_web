@@ -24,9 +24,9 @@ const Cart = () => {
 
   return (
     <div
-      className={`m-4 p-4 dark:bg-gray-900 dark:text-white transition-colors duration-300  ${
+      className={`p-8 dark:bg-gray-900 dark:text-white transition-colors duration-300  ${
         cartItemsArray.length > 0
-          ? "grid grid-cols-1 md:grid-cols-3 gap-4"
+          ? "grid grid-cols-1 md:grid-cols-4 gap-4"
           : "flex items-center justify-center"
       }`}
     >
@@ -34,7 +34,7 @@ const Cart = () => {
       <div
         className={`md:col-span-2 ${
           cartItemsArray.length === 0
-            ? "col-span-full flex justify-center items-center h-[80vh]"
+            ? "col-span-full flex justify-center items-center h-[100vh]"
             : ""
         }`}
       >

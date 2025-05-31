@@ -1,18 +1,19 @@
 import ItemList from "./ItemsList";
 
 const RestaurantCategory = ({ data, itemList, setItemIndex }) => {
+
   const handleClick = () => {
     setItemIndex();
   };
 
   return (
-    <div className="w-6/12 mx-auto p-4 my-4 text-black dark:text-white rounded-lg transition-colors duration-300">
+    <div className="w-6/12 mx-auto p-4 py-4 text-black dark:text-white rounded-lg transition-colors duration-300">
       <div
         className="flex justify-between items-center cursor-pointer"
         onClick={handleClick}
       >
         <span className="font-bold text-lg">
-          {data.title} ({data.itemCards.length})
+          {data.title} ({data?.itemCards?.length})
         </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +27,7 @@ const RestaurantCategory = ({ data, itemList, setItemIndex }) => {
         </svg>
       </div>
 
-      {itemList && <ItemList item={data.itemCards} />}
+      {itemList && <ItemList item={data?.itemCards} />}
     </div>
   );
 };

@@ -16,8 +16,6 @@ const RestaurantMenu = () => {
   const { name, cuisines, costForTwoMessage } =
     resInfo?.cards[2]?.card?.card?.info;
 
-  const { itemCards } =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
   const categories =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
@@ -27,19 +25,20 @@ const RestaurantMenu = () => {
 
   return (
     <div className="text-center px-4 dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-300">
-      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <h1 className="font-bold py-6 text-2xl">{name}</h1>
       <p className="font-bold text-lg mb-4">
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
 
-      {categories.map((category, index) => (
-        <RestaurantCategory
-          data={category?.card?.card}
-          key={category?.card?.card?.title}
-          itemList={index === itemIndex}
-          setItemIndex={() => setItemIndex(index)}
-        />
-      ))}
+      {Array.isArray(categories) &&
+        categories.map((category, index) => (
+          <RestaurantCategory
+            data={category?.card?.card}
+            key={category?.card?.card?.title}
+            itemList={index === itemIndex}
+            setItemIndex={() => setItemIndex(index)}
+          />
+        ))}
     </div>
   );
 };

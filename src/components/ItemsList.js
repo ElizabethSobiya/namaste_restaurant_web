@@ -67,8 +67,7 @@ const ItemList = ({ item }) => {
               )}
 
               <p
-                className="text-sm mt-1 leading-snug whitespace-pre-line break-words"
-                style={{ color: "rgba(2, 6, 12, 0.6)" }}
+                className="text-sm mt-1 leading-snug whitespace-pre-line text-[#02060C99] text-black dark:text-white break-words"
               >
                 {visibleText}
                 {shouldTruncate && (
@@ -95,7 +94,7 @@ const ItemList = ({ item }) => {
 
               {quantity === 0 ? (
                 <button
-                  className="mt-2 w-[80px] py-[6px] text-sm font-semibold rounded-sm bg-white text-[#1BA672] border border-[#1BA672] hover:bg-green-50"
+                  className="mt-2 w-[80px] py-[6px] text-sm font-semibold rounded-sm bg-white dark:bg-gray-800 text-[#1BA672] border border-[#1BA672] hover:bg-green-50"
                   onClick={() => dispatch(addItems(items))}
                 >
                   ADD
