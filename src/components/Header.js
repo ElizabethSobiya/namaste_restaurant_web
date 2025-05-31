@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import Logo from "../../assets/restaurant_logo.png";
+import Logo from "../../assets/logo.jpg";
 import { Link } from "react-router-dom";
 import useOnlineSatus from "./hooks/useOnlineStatus";
 import userContext from "./hooks/useContext";
@@ -23,9 +23,9 @@ function Header() {
   };
 
   return (
-    <div className="flex justify-between items-center h-20 px-4 bg-yellow-300 dark:bg-black text-black dark:text-white shadow-lg">
+    <div className="flex justify-between items-center h-20 px-4 bg-[#FF5200] dark:bg-black text-black dark:text-white shadow-lg">
       <Link to="/">
-        <img className="w-40 h-16" src={Logo} alt="logo" />
+        {/* <img className="w-40 h-16" src='/assets/logo.jpg' alt="logo" /> */}
       </Link>
       <ul className="flex items-center gap-4 text-md font-medium">
         <li>Online: {onlineStaus ? "✅" : "🔴"}</li>
