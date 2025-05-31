@@ -25,7 +25,8 @@ function Body() {
       const data = await fetch(API);
       const resData = await data.json();
       console.log(resData, "data");
-      async function checkRestaurantData(resData) {
+
+      const checkRestaurantData = (resData) => {
         for (let i = 0; i < resData.data.cards.length; i++) {
           const checkData =
             resData.data.cards[i].card?.card?.gridElements?.infoWithStyle
@@ -34,34 +35,33 @@ function Body() {
             return checkData;
           }
         }
-      }
-      const resultData = await checkRestaurantData(resData);
-      // console.log(resultData, 'res')
-      setRestaurants(resultData);
-      setFilteredRes(resultData);
-      setSearch("");
+      };
+
+      const resultData = checkRestaurantData(resData);
+      setRestaurants(resultData); // master data
+      setFilteredRes(resultData); // current display data
     } catch (error) {
       console.error("Error fetching restaurant data:", error);
     }
   };
 
   const handleFilterClick = () => {
-    const filteredData = restaurant.filter((res) => res?.info?.avgRating > 4);
-    console.log(filteredData, "resfilter");
-    setRestaurants(filteredData);
+    const filteredData = restaurant.filter((res) => res?.info?.avgRating > 4.5);
+    setFilteredRes(filteredData);
   };
-  const filteredRestaurant = () => {
-    if (search === "") {
-      fetchRestaurantData();
+
+  const handleSearch = () => {
+    if (!search.trim()) {
+      setFilteredRes(restaurant); // if empty, reset to all
       return;
     }
-    const searchFilter = restaurant.filter((resSearch) =>
-      resSearch.info.name.toLowerCase().includes(search.toLowerCase())
+
+    const searchFilter = restaurant.filter((res) =>
+      res?.info?.name.toLowerCase().includes(search.toLowerCase())
     );
-    console.log(searchFilter, "search");
-    // setRestaurants(searchFilter);
     setFilteredRes(searchFilter);
   };
+
   const onlineStatus = useOnlineSatus();
   if (!onlineStatus) {
     return <h1>Looks like your are offline, connect your internet</h1>;
@@ -71,29 +71,35 @@ function Body() {
     <Shimmer />
   ) : (
     <>
-      <div className="body bg-white dark:bg-gray-900 min-h-screen transition-colors duration-300">
-        <div className="filter flex flex-wrap items-center justify-center mb-4 pt-5 gap-4">
-          <div className="relative items-center">
+      <div className="body bg-[#FAF9F6] dark:bg-gray-900 min-h-screen transition-colors duration-300">
+        <div className="filter flex flex-row items-center justify-center mb-4 pt-5 gap-4 px-4">
+          <div className="relative flex w-full max-w-[50vw]">
             <input
               type="text"
-              onChange={(e) => setSearch(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") filteredRestaurant();
-              }}
-              className="pl-10 pr-4 py-2 w-130 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               value={search}
               placeholder="Search restaurants..."
+              onChange={(e) => {
+                setSearch(e.target.value);
+                if (e.target.value === "") {
+                  setFilteredRes(restaurant); 
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSearch();
+              }}
+              className="pl-10 pr-4 py-2 w-full rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
             />
+
             <CiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-white" />
           </div>
 
           <div className="flex items-center">
-            <button
+          <button
               className="px-4 py-2 bg-yellow-400 dark:bg-yellow-600 text-black dark:text-white rounded-full shadow-md hover:shadow-lg transition"
-              onClick={handleFilterClick}
-            >
-              🌟 Top Rated
-            </button>
+            onClick={handleFilterClick}
+          >
+            🌟 Top Rated
+          </button>
           </div>
         </div>
 
