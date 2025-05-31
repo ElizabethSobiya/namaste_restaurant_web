@@ -16,7 +16,7 @@ function Header() {
   const loginClick = () => {
     setButtonClick((prev) => (prev === "Login" ? "Logout" : "Login"));
   };
-
+  const cartCount = Object.values(cartItems).reduce((total, item) => total + item.quantity, 0);
   const toggleDarkMode = () => {
     setDarkMode((prev) => !prev);
     document.documentElement.classList.toggle("dark");
@@ -49,7 +49,7 @@ function Header() {
           <Link to="/grocery">Grocery</Link>
         </li>
         <li>
-          <Link to="/cart">Cart: {cartItems.length}</Link>
+          <Link to="/cart">Cart: {cartCount}</Link>
         </li>
         <li>
           <button className="px-3 py-1 border rounded-md" onClick={loginClick}>

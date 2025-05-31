@@ -14,7 +14,7 @@ const ItemList = ({ item }) => {
 
   return (
     <div className="space-y-6 px-4 py-4">
-      {item.map((items, index) => {
+      {item?.map((items, index) => {
         const { id, name, price, defaultPrice, description, imageId, ratings } =
           items.card.info;
 
