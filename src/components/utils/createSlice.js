@@ -3,22 +3,32 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    items: [],
+    items: {}, // Use object for faster lookup
   },
   reducers: {
     addItems: (state, action) => {
-      //redux uses Immer bts
-      state.items.push(action.payload);
+      const id = action.payload.card.info.id;
+      if (state.items[id]) {
+        state.items[id].quantity += 1;
+      } else {
+        state.items[id] = { ...action.payload, quantity: 1 };
+      }
     },
-    removeItem: (state) => {
-      state.items.pop();
+    removeItem: (state, action) => {
+      const id = action.payload.card.info.id;
+      if (state.items[id]) {
+        if (state.items[id].quantity === 1) {
+          delete state.items[id];
+        } else {
+          state.items[id].quantity -= 1;
+        }
+      }
     },
     clearCart: (state) => {
-      // in rtk(redux toolkit) either mutate the existing state or return new state[] return {items:[]}
-      state.items.length = 0;
+      state.items = {};
     },
   },
 });
-export default cartSlice.reducer;
 
+export default cartSlice.reducer;
 export const { addItems, removeItem, clearCart } = cartSlice.actions;
