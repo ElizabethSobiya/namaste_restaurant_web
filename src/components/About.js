@@ -4,7 +4,7 @@ function About() {
   return (
     <div className="min-h-screen bg-[#FAF9F6] dark:bg-gray-900 text-gray-800 dark:text-white px-4 py-8 transition-colors duration-300">
       <div className="max-w-5xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-orange-600">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#FF5200]">
           🍔 Welcome to ZestyEats! 🍟
         </h1>
         <p className="text-lg md:text-xl mb-8 leading-relaxed">
