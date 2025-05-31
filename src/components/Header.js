@@ -24,16 +24,33 @@ function Header() {
 
   return (
     <div className="flex justify-between items-center h-20 px-4 bg-[#FF5200] dark:bg-black text-black dark:text-white shadow-lg">
-      <Link to="/">
-        {/* <img className="w-40 h-16" src='/assets/logo.jpg' alt="logo" /> */}
+      <Link
+        to="/"
+        className="text-white dark:text-yellow-300 font-bold text-2xl tracking-wide flex items-center gap-2 hover:scale-105 transition-transform duration-300"
+      >
+        <span role="img" aria-label="plate">
+          🍽️
+        </span>{" "}
+        ZestyEats
       </Link>
+
       <ul className="flex items-center gap-4 text-md font-medium">
         <li>Online: {onlineStaus ? "✅" : "🔴"}</li>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About Us</Link></li>
-        <li><Link to="/contact">Contact Us</Link></li>
-        <li><Link to="/grocery">Grocery</Link></li>
-        <li><Link to="/cart">Cart: {cartItems.length}</Link></li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About Us</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact Us</Link>
+        </li>
+        <li>
+          <Link to="/grocery">Grocery</Link>
+        </li>
+        <li>
+          <Link to="/cart">Cart: {cartItems.length}</Link>
+        </li>
         <li>
           <button className="px-3 py-1 border rounded-md" onClick={loginClick}>
             {buttonClick}
