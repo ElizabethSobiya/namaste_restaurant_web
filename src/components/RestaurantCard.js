@@ -10,7 +10,13 @@ function RestaurantCard({
   costForTwo,
   avgRatingString,
 }) {
-  return (
+  const isLoading = !name || !cloudinaryImageId;
+
+  return isLoading ? (
+    <div className="m-4 p-4 w-[250px] h-[330px] flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow">
+      <div className="loader border-4 border-gray-300 border-t-[#FF5200] rounded-full w-10 h-10 animate-spin"></div>
+    </div>
+  ) : (
     <div
       data-testid="resCard"
       className="m-4 p-4 w-[250px] rounded-lg bg-white shadow-md hover:bg-yellow-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-black dark:text-white transition-colors duration-300"

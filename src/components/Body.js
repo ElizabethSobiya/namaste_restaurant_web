@@ -76,7 +76,7 @@ function Body() {
     return <h1>Looks like your are offline, connect your internet</h1>;
   }
 
-  return restaurant?.info?.length === 0 ? (
+  return restaurant?.length === 0 ? (
     <Shimmer />
   ) : (
     <>
